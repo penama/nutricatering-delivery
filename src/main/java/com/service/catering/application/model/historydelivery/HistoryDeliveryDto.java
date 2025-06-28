@@ -8,13 +8,14 @@ import lombok.Data;
 @AllArgsConstructor
 public class HistoryDeliveryDto {
 
-	public String id;
-	@NotBlank(message = "Delivery es mandatorio" )
-	public Delivery delivery;
-	public String status;
-	public String longitude;
-	public String latitude;
-	public String comentario;
-	public String createdDate;
+  public String id;
 
+  @NotBlank(message = "Delivery es mandatorio")
+  public Delivery delivery;
+
+  public String status;
+  public String longitude;
+  public String latitude;
+  public String comentario;
+  public String createdDate;
 }

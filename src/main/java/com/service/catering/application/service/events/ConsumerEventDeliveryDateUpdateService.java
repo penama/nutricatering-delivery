@@ -1,10 +1,10 @@
 package com.service.catering.application.service.events;
 
-import com.service.catering.application.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.service.catering.application.model.event.EventDto;
+import com.service.catering.application.service.BaseService;
 import com.service.catering.domain.model.CustomerAddressEntity;
 import com.service.catering.infraestructure.event.update.ICreatedCustomerAddressRepository;
 import com.service.catering.infraestructure.repositories.service.CustomerAddressServiceRepository;
@@ -21,11 +21,22 @@ public class ConsumerEventDeliveryDateUpdateService extends BaseService {
   @Autowired private CustomerAddressServiceRepository customerAddressServiceRepository;
 
   public void deliveryDateUpdateUpdateEvent(EventDto eventDto) {
-    CustomerAddressEntity customerAddressEntity = customerAddressServiceRepository.queryCustomerAddressByCustomer( eventDto.getBody().get(CUSTOMER_ID).toString());
+    CustomerAddressEntity customerAddressEntity =
+        customerAddressServiceRepository.queryCustomerAddressByCustomer(
+            eventDto.getBody().get(CUSTOMER_ID).toString());
     customerAddressEntity.setId(eventDto.getBody().get(ADDRESS_GUID).toString());
     customerAddressEntity.setDeliveryDate(eventDto.getBody().get(NEW_DATE).toString());
-	log.info( this.getClass(), "Actualizando datos, previusDate: " + eventDto.getBody().get(PREVIUS_DATE) + ", newDate: " + customerAddressEntity.getDeliveryDate() );
+    log.info(
+        this.getClass(),
+        "Actualizando datos, previusDate: "
+            + eventDto.getBody().get(PREVIUS_DATE)
+            + ", newDate: "
+            + customerAddressEntity.getDeliveryDate());
     iCreatedCustomerAddressRepository.eventCustomerDeliveryUpdate(customerAddressEntity);
-	log.info( this.getClass(), "Evento customerCreatedEvent, customerAddressId = " + customerAddressEntity.getId() + ", actualizado" );
+    log.info(
+        this.getClass(),
+        "Evento customerCreatedEvent, customerAddressId = "
+            + customerAddressEntity.getId()
+            + ", actualizado");
   }
 }

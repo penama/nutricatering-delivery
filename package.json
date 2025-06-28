@@ -4,5 +4,20 @@
   },
   "scripts": {
     "prepare": "husky"
-  }
+  },
+  "name": "nutricatering-delivery",
+  "version": "1.0.0",
+  "description": "nutricatering.delivery",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/penama/nutricatering-delivery.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/penama/nutricatering-delivery/issues"
+  },
+  "homepage": "https://github.com/penama/nutricatering-delivery#readme"
 }

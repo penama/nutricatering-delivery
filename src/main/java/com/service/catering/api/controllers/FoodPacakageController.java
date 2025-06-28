@@ -21,7 +21,7 @@ public class FoodPacakageController extends BaseController {
   public ResponseEntity newFoodPackage(@RequestBody FoodPackageDto paymentDto) {
     FoodPackageDto foodPackageDto = null;
     try {
-      foodPackageDto = foodPackageService.newFoodPackage( foodPackageDto );
+      foodPackageDto = foodPackageService.newFoodPackage(foodPackageDto);
     } catch (Exception e) {
       log.error(this.getClass(), e.getMessage(), e);
       return new ResponseEntity(new ErrorDto(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
@@ -43,13 +43,13 @@ public class FoodPacakageController extends BaseController {
 
   @GetMapping("/foodPackage/deliveryId/{deliveryId}")
   public ResponseEntity<FoodPackageDto> getFoodPackageById(@PathVariable String id) {
-	  FoodPackageDto foodPackageDto = null;
-	  try {
-		  foodPackageDto = foodPackageService.getFoodPackageById( id );
-	  } catch (Exception e) {
-		  log.error(this.getClass(), e.getMessage(), e);
-		  return new ResponseEntity(new ErrorDto(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-	  }
-	  return new ResponseEntity<FoodPackageDto>(foodPackageDto, HttpStatus.OK);
+    FoodPackageDto foodPackageDto = null;
+    try {
+      foodPackageDto = foodPackageService.getFoodPackageById(id);
+    } catch (Exception e) {
+      log.error(this.getClass(), e.getMessage(), e);
+      return new ResponseEntity(new ErrorDto(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    return new ResponseEntity<FoodPackageDto>(foodPackageDto, HttpStatus.OK);
   }
 }

@@ -1,12 +1,13 @@
 package com.service.catering.application.service.events;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.service.catering.application.model.customer.CustomerStatus;
 import com.service.catering.application.model.event.EventDto;
 import com.service.catering.application.service.BaseService;
 import com.service.catering.domain.model.CustomerEntity;
 import com.service.catering.infraestructure.repositories.service.CustomerServiceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 @Service
 public class ConsumerEventCustomerCreatedService extends BaseService {
@@ -27,13 +28,22 @@ public class ConsumerEventCustomerCreatedService extends BaseService {
     customerEntity.setFullName(eventDto.getBody().get(FULLNAME).toString());
     customerEntity.setCreatedAt(eventDto.getBody().get(CREATEDAT).toString());
 
-	  CustomerEntity customerEntityBd = customerServiceRepository.queryCustomer( customerEntity.getId() );
-	  if ( customerEntityBd != null ){
-		  log.error( this.getClass(), "Evento customerCreatedEvent, customerEntityId = " + customerEntity.getId() + ", ya existe en la base" );
-		  return;
-	  }
+    CustomerEntity customerEntityBd =
+        customerServiceRepository.queryCustomer(customerEntity.getId());
+    if (customerEntityBd != null) {
+      log.error(
+          this.getClass(),
+          "Evento customerCreatedEvent, customerEntityId = "
+              + customerEntity.getId()
+              + ", ya existe en la base");
+      return;
+    }
     customerEntity.setStatus(CustomerStatus.ACTIVE.name());
-	customerServiceRepository.eventCustomerCreated( customerEntity );
-	  log.info( this.getClass(), "Evento customerCreatedEvent, customerEntityId = " + customerEntity.getId() + ", registrado" );
+    customerServiceRepository.eventCustomerCreated(customerEntity);
+    log.info(
+        this.getClass(),
+        "Evento customerCreatedEvent, customerEntityId = "
+            + customerEntity.getId()
+            + ", registrado");
   }
 }

@@ -1,12 +1,12 @@
 package com.service.catering.application.service.events;
 
-import com.service.catering.application.service.BaseService;
-import com.service.catering.infraestructure.repositories.service.CustomerAddressServiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.service.catering.application.model.event.EventDto;
+import com.service.catering.application.service.BaseService;
 import com.service.catering.domain.model.CustomerAddressEntity;
+import com.service.catering.infraestructure.repositories.service.CustomerAddressServiceRepository;
 
 @Service
 public class ConsumerEventCustomerAddressUpdateService extends BaseService {
@@ -18,8 +18,7 @@ public class ConsumerEventCustomerAddressUpdateService extends BaseService {
   public static final String LATITUDED = "latitude";
   public static final String LONGITUD = "longitude";
 
-	@Autowired
-	private CustomerAddressServiceRepository customerAddressServiceRepository;
+  @Autowired private CustomerAddressServiceRepository customerAddressServiceRepository;
 
   public void customerAddressUpdatedEvent(EventDto eventDto) throws Exception {
     CustomerAddressEntity customerAddressEntity = new CustomerAddressEntity();
@@ -31,6 +30,10 @@ public class ConsumerEventCustomerAddressUpdateService extends BaseService {
     customerAddressEntity.setLatituded(eventDto.getBody().get(LATITUDED).toString());
 
     customerAddressServiceRepository.eventCustomerAddressCreated(customerAddressEntity);
-	  log.info( this.getClass(), "Evento customerAddressUpdatedEvent, customerAddressId = " + customerAddressEntity.getId() + ", actualizado" );
+    log.info(
+        this.getClass(),
+        "Evento customerAddressUpdatedEvent, customerAddressId = "
+            + customerAddressEntity.getId()
+            + ", actualizado");
   }
 }

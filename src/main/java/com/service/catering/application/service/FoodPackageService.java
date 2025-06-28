@@ -3,14 +3,14 @@ package com.service.catering.application.service;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.service.catering.domain.model.FoodPackageEntity;
-import com.service.catering.infraestructure.utils.DateFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.service.catering.application.model.foodpackage.*;
 import com.service.catering.application.utils.FoodPackageUtil;
+import com.service.catering.domain.model.FoodPackageEntity;
 import com.service.catering.infraestructure.event.querys.IQueryFoodPackageRepository;
+import com.service.catering.infraestructure.utils.DateFormat;
 
 @Service
 public class FoodPackageService extends BaseCommandHandler {
@@ -20,7 +20,7 @@ public class FoodPackageService extends BaseCommandHandler {
   public FoodPackageDto newFoodPackage(FoodPackageDto foodPackageDto) throws Exception {
     FoodPackageEntity foodPackageEntity = FoodPackageUtil.paymentDtoToPaymentEntity(foodPackageDto);
     commandHandler(this, foodPackageEntity);
-    return FoodPackageUtil.paymentEntityToPaymentDto( foodPackageEntity );
+    return FoodPackageUtil.paymentEntityToPaymentDto(foodPackageEntity);
   }
 
   public List<FoodPackageDto> getFoodPackages() throws Exception {
@@ -32,13 +32,12 @@ public class FoodPackageService extends BaseCommandHandler {
     return foodPackageDtos;
   }
 
-  public FoodPackageDto getFoodPackageById(String id ) throws Exception {
-    FoodPackageEntity foodPackageEntity = iQueryFoodPackageRepository.queryFoodPackageById( id );
+  public FoodPackageDto getFoodPackageById(String id) throws Exception {
+    FoodPackageEntity foodPackageEntity = iQueryFoodPackageRepository.queryFoodPackageById(id);
     return FoodPackageUtil.paymentEntityToPaymentDto(foodPackageEntity);
   }
 
-  public void updateFoodPackage( FoodPackageEntity foodPackageEntity ) throws  Exception {
-	  foodPackageEntity.setUpdateDate( DateFormat.toDate() );
+  public void updateFoodPackage(FoodPackageEntity foodPackageEntity) throws Exception {
+    foodPackageEntity.setUpdateDate(DateFormat.toDate());
   }
-
 }

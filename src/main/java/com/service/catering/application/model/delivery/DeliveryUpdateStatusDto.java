@@ -5,11 +5,9 @@ import lombok.Data;
 @Data
 public class DeliveryUpdateStatusDto {
 
-	public String deliveryId;
-	public String status;
-	public String longitude;
-	public String latitude;
-	public String comentario;
-
-
+  public String deliveryId;
+  public String status;
+  public String longitude;
+  public String latitude;
+  public String comentario;
 }
