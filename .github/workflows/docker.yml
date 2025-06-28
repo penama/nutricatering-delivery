@@ -1,0 +1,22 @@
+name: Docker build
+
+on:
+  push:
+    branches:
+    - modulo5
+#  pull_request:
+#    types: [opened, reopened]
+
+jobs:
+  build:
+    name: Build with Docker
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+#      - fullName: Build with Maven
+#        run: ./mvnw clean package -DskipTests
+
+      - name: Building the image from the Dockerfile
+        uses: ./.github/action-docker
