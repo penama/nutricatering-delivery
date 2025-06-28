@@ -22,18 +22,12 @@ public class CustomerService extends BaseCommandHandler {
     customerEntity.setStatus(CustomerStatus.ACTIVE.name());
     commandHandler(this, customerEntity);
     return CustomerUtil.customerEntityToCustomerDto(customerEntity);
-    //        CommandEntitysEvent commandEntitysEvent = new CommandEntitysEvent( this,
-    // customerEntity);
-    //        applicationEventPublisher.publishEvent( commandEntitysEvent );
   }
 
   public void newCustomer(CustomerDto customerDto) throws Exception {
     CustomerEntity customerEntity = CustomerUtil.customerDtoToCustomerEntity(customerDto);
     customerEntity.setStatus(CustomerStatus.ACTIVE.name());
     commandHandler(this, customerEntity);
-    //        CommandEntitysEvent commandEntitysEvent = new CommandEntitysEvent( this,
-    // customerEntity);
-    //        applicationEventPublisher.publishEvent( commandEntitysEvent );
   }
 
   public List<CustomerDto> getCustomers() throws Exception {

@@ -20,7 +20,7 @@ public class CommandEntitysEventListener implements ApplicationListener<CommandE
   public void onApplicationEvent(CommandEntitysEvent event) {
     if (event.getData() instanceof DeliveryEntity) {
       try {
-        deliveryServiceRepository.newDelivery( (DeliveryEntity) event.getData());
+        deliveryServiceRepository.newDelivery((DeliveryEntity) event.getData());
       } catch (Exception e) {
         e.printStackTrace();
         throw new RuntimeException(e);
@@ -28,7 +28,7 @@ public class CommandEntitysEventListener implements ApplicationListener<CommandE
     }
     if (event.getData() instanceof DeliveryPersonEntity) {
       try {
-        deliveryPersonServiceRepository.newDeliveryPerson( (DeliveryPersonEntity) event.getData());
+        deliveryPersonServiceRepository.newDeliveryPerson((DeliveryPersonEntity) event.getData());
       } catch (Exception e) {
         e.printStackTrace();
         throw new RuntimeException(e);
@@ -44,7 +44,7 @@ public class CommandEntitysEventListener implements ApplicationListener<CommandE
     }
     if (event.getData() instanceof FoodPackageEntity) {
       try {
-        foodPackageServiceRepository.newFoodPackage( (FoodPackageEntity) event.getData());
+        foodPackageServiceRepository.newFoodPackage((FoodPackageEntity) event.getData());
       } catch (Exception e) {
         e.printStackTrace();
         throw new RuntimeException(e);

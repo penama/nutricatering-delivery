@@ -2,8 +2,6 @@ package com.service.catering.application.service.scheduled;
 
 import java.util.List;
 
-import com.service.catering.application.service.BaseService;
-import com.service.catering.domain.model.ProducerEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -12,6 +10,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.service.catering.application.model.event.EventDto;
+import com.service.catering.application.service.BaseService;
+import com.service.catering.domain.model.ProducerEntity;
 import com.service.catering.infraestructure.repositories.service.ProducerServiceRepository;
 import com.service.catering.infraestructure.servicebus.IProducerBus;
 import com.service.catering.infraestructure.utils.DateFormat;
@@ -36,15 +36,15 @@ public class ScheduledTaskService extends BaseService {
 
   @Scheduled(cron = "#{@cronProperties.getExpression()}")
   public void executeTask() {
-	log.info( this.getClass(), "################################## ScheduledTask init " );
+    log.info(this.getClass(), "################################## ScheduledTask init ");
     List<ProducerEntity> producerEntityList = producerServiceRepository.queryProducers();
-	log.info( this.getClass(), producerEntityList.size() + " producers encontrados" );
+    log.info(this.getClass(), producerEntityList.size() + " producers encontrados");
     for (ProducerEntity producerEntity : producerEntityList) {
       try {
         iProducerBus.sendMessage(mapper.readValue(producerEntity.body, EventDto.class));
         producerEntity.setStatus("completado");
       } catch (JsonProcessingException e) {
-        log.error( this.getClass(), e.getMessage(), e );
+        log.error(this.getClass(), e.getMessage(), e);
         producerEntity.setStatus("error");
       } finally {
         producerEntity.setProcessedDate(DateFormat.toDate());

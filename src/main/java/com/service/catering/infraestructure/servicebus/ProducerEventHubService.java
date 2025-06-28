@@ -1,6 +1,5 @@
 package com.service.catering.infraestructure.servicebus;
 
-import com.service.catering.application.service.BaseService;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.azure.messaging.eventhubs.EventData;
@@ -9,6 +8,7 @@ import com.azure.messaging.eventhubs.EventHubClientBuilder;
 import com.azure.messaging.eventhubs.EventHubProducerClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.service.catering.application.model.event.EventDto;
+import com.service.catering.application.service.BaseService;
 
 @org.springframework.stereotype.Service
 public class ProducerEventHubService extends BaseService implements IProducerBus {
@@ -22,7 +22,7 @@ public class ProducerEventHubService extends BaseService implements IProducerBus
       ObjectMapper objectMapper) {
     this.producer =
         new EventHubClientBuilder().connectionString(connStr, queue).buildProducerClient();
-	log.info( this.getClass(), "producer > azure.eventhub.connection > ok" );
+    log.info(this.getClass(), "producer > azure.eventhub.connection > ok");
     this.objectMapper = new ObjectMapper();
   }
 
@@ -44,12 +44,12 @@ public class ProducerEventHubService extends BaseService implements IProducerBus
         //				  }
       }
     } catch (Exception e) {
-		log.error( this.getClass(), e.getMessage(), e );
+      log.error(this.getClass(), e.getMessage(), e);
       throw new RuntimeException("Error serializing DomainEvent to JSON", e);
     }
     if (batch.getCount() > 0) {
       producer.send(batch);
-	  log.info( this.getClass(), "Evento " + eventDto.getEventType() + " enviado: " + json );
+      log.info(this.getClass(), "Evento " + eventDto.getEventType() + " enviado: " + json);
     }
   }
 }

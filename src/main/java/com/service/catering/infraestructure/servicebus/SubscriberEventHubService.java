@@ -1,6 +1,5 @@
 package com.service.catering.infraestructure.servicebus;
 
-import com.service.catering.application.service.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -9,6 +8,7 @@ import com.azure.messaging.eventhubs.EventHubClientBuilder;
 import com.azure.messaging.eventhubs.EventHubConsumerAsyncClient;
 import com.azure.messaging.eventhubs.models.EventPosition;
 import com.azure.messaging.eventhubs.models.PartitionEvent;
+import com.service.catering.application.service.BaseService;
 import com.service.catering.application.service.events.ConsumerEventSubscribersService;
 
 import jakarta.annotation.PostConstruct;
@@ -45,16 +45,21 @@ public class SubscriberEventHubService extends BaseService {
                   .receiveFromPartition(partitionId, EventPosition.latest())
                   .subscribe(this::handleEvent);
             });
-	  log.info( this.getClass(), "consumer > azure.eventhub.connection > ok" );
+    log.info(this.getClass(), "consumer > azure.eventhub.connection > ok");
   }
 
   private void handleEvent(PartitionEvent event) {
     String body = event.getData().getBodyAsString();
-	log.info( this.getClass(), "Evento recibido, partición: " + event.getPartitionContext().getPartitionId() + ", body: " + body );
-	try{
-		consumerEventSubscribersService.procesarMensaje(body);
-	} catch ( Exception e ){
-		log.error( this.getClass(), e.getMessage(), e );
-	}
+    log.info(
+        this.getClass(),
+        "Evento recibido, partición: "
+            + event.getPartitionContext().getPartitionId()
+            + ", body: "
+            + body);
+    try {
+      consumerEventSubscribersService.procesarMensaje(body);
+    } catch (Exception e) {
+      log.error(this.getClass(), e.getMessage(), e);
+    }
   }
 }

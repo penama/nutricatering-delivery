@@ -8,5 +8,5 @@ public interface IQueryCustomerRepository {
 
   public List<CustomerEntity> queryCustomers() throws Exception;
 
-  public CustomerEntity queryCustomer(String id) throws  Exception;
+  public CustomerEntity queryCustomer(String id) throws Exception;
 }

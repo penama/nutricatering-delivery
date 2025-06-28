@@ -13,6 +13,6 @@ public class DeliveryEntity {
   public String deliveryPersonId;
   public String status;
   public String comentary;
-	public String createdDate;
-	public String updateDate;
+  public String createdDate;
+  public String updateDate;
 }

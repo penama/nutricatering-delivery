@@ -11,8 +11,7 @@ public class DeliveryPersonEntity {
   @Id public String id;
   public String name;
   public String vehiculo;
-	public String status;
+  public String status;
   public String createdDate;
-	public String updateDate;
-
+  public String updateDate;
 }

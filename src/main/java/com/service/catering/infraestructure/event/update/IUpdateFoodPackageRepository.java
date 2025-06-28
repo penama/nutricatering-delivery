@@ -1,6 +1,5 @@
 package com.service.catering.infraestructure.event.update;
 
-import com.service.catering.domain.model.DeliveryPersonEntity;
 import com.service.catering.domain.model.FoodPackageEntity;
 
 public interface IUpdateFoodPackageRepository {

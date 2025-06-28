@@ -1,8 +1,8 @@
 package com.service.catering.infraestructure.event.querys;
 
-import com.service.catering.domain.model.FoodPackageEntity;
-
 import java.util.List;
+
+import com.service.catering.domain.model.FoodPackageEntity;
 
 public interface IQueryFoodPackageRepository {
 

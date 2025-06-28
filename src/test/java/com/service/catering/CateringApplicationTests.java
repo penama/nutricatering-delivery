@@ -1,8 +1,8 @@
 package com.service.catering;
 
 // @SpringBootTest
-//class CateringApplicationTests {
+// class CateringApplicationTests {
 //
 //  //	@Test
 //  void contextLoads() {}
-//}
+// }

@@ -15,5 +15,5 @@ public class FoodPackageEntity {
   public String customerAddressId;
   public String statusDelivery;
   public String createdDate;
-	public String updateDate;
+  public String updateDate;
 }
