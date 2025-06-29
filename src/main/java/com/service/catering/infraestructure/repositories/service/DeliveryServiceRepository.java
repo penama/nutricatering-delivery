@@ -32,12 +32,12 @@ public class DeliveryServiceRepository implements IQueryDeliveryRepository {
     return repository.findByPersonId(personId);
   }
 
-	@Override
-	public DeliveryEntity queryDeliverysByFoodPackageId(String foodPackageId) {
-		return repository.findByFoodPackageId( foodPackageId );
-	}
+  @Override
+  public DeliveryEntity queryDeliverysByFoodPackageId(String foodPackageId) {
+    return repository.findByFoodPackageId(foodPackageId);
+  }
 
-	@Override
+  @Override
   public DeliveryEntity queryDeliveryId(String deliveryId) {
     return repository.findById(deliveryId).get();
   }

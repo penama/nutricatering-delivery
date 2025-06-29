@@ -22,7 +22,7 @@ public class ProducerEventHubService extends BaseService implements IProducerBus
       ObjectMapper objectMapper) {
     this.producer =
         new EventHubClientBuilder().connectionString(connStr, queue).buildProducerClient();
-//    log.info(this.getClass(), "producer > azure.eventhub.connection > ok");
+    //    log.info(this.getClass(), "producer > azure.eventhub.connection > ok");
     this.objectMapper = new ObjectMapper();
   }
 

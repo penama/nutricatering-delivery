@@ -3,7 +3,6 @@ package com.service.catering.infraestructure.servicebus;
 import org.springframework.beans.factory.annotation.Value;
 
 import com.azure.messaging.servicebus.ServiceBusClientBuilder;
-import com.azure.messaging.servicebus.ServiceBusMessage;
 import com.azure.messaging.servicebus.ServiceBusSenderClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.service.catering.application.model.event.EventDto;
@@ -29,13 +28,13 @@ public class ProducerBus { // implements IProducerBus {
 
   // @Override
   public void sendMessage(EventDto eventDto) {
-//    try {
-//      String json = objectMapper.writeValueAsString(eventDto);
-//      ServiceBusMessage msg = new ServiceBusMessage(json);
-//      sender.sendMessage(msg);
-//      System.out.println("Evento enviado: " + json);
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//    }
+    //    try {
+    //      String json = objectMapper.writeValueAsString(eventDto);
+    //      ServiceBusMessage msg = new ServiceBusMessage(json);
+    //      sender.sendMessage(msg);
+    //      System.out.println("Evento enviado: " + json);
+    //    } catch (Exception e) {
+    //      e.printStackTrace();
+    //    }
   }
 }

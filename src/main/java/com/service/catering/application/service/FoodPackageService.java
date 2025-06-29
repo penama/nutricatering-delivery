@@ -18,7 +18,8 @@ public class FoodPackageService extends BaseCommandHandler {
   @Autowired private IQueryFoodPackageRepository iQueryFoodPackageRepository;
 
   public FoodPackageDto newFoodPackage(FoodPackageDto foodPackageDto) throws Exception {
-    FoodPackageEntity foodPackageEntity = FoodPackageUtil.foodPackageDtoToFoodPackageEntity(foodPackageDto);
+    FoodPackageEntity foodPackageEntity =
+        FoodPackageUtil.foodPackageDtoToFoodPackageEntity(foodPackageDto);
     commandHandler(this, foodPackageEntity);
     return FoodPackageUtil.foodPackageEntityToFoodPackageDto(foodPackageEntity);
   }

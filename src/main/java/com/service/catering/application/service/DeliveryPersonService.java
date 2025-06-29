@@ -17,7 +17,7 @@ public class DeliveryPersonService extends BaseCommandHandler {
   @Autowired private IQueryDeliveryPersonRepository iQueryDeliveryPersonRepository;
 
   public DeliveryPersonDto newDeliveryPerson(DeliveryPersonDto deliveryPersonDto) throws Exception {
-	  deliveryPersonDto.setStatus( "ACTIVE" );
+    deliveryPersonDto.setStatus("ACTIVE");
     DeliveryPersonEntity deliveryPersonEntity =
         DeliveryPersonUtil.DeliberyPersonDtoToDeliveryPersonEntity(deliveryPersonDto);
     commandHandler(this, deliveryPersonEntity);

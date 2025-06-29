@@ -1,9 +1,8 @@
 package com.service.catering.application.model.delivery;
 
-import lombok.Data;
-import org.hibernate.dialect.identity.HANAIdentityColumnSupport;
-
 import java.util.List;
+
+import lombok.Data;
 
 @Data
 public class DeliveryStatusDto {

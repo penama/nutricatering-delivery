@@ -1,6 +1,5 @@
 package com.service.catering.application.model.delivery;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Data

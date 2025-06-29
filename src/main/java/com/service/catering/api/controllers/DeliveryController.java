@@ -2,13 +2,13 @@ package com.service.catering.api.controllers;
 
 import java.util.List;
 
-import com.service.catering.application.model.delivery.DeliveryStatusDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.service.catering.application.model.delivery.DeliveryDto;
+import com.service.catering.application.model.delivery.DeliveryStatusDto;
 import com.service.catering.application.model.delivery.DeliveryUpdateStatusDto;
 import com.service.catering.application.model.error.ErrorDto;
 import com.service.catering.application.service.DeliveryService;
@@ -82,15 +82,16 @@ public class DeliveryController extends BaseController {
     return new ResponseEntity<List<DeliveryDto>>(deliveryDtos, HttpStatus.OK);
   }
 
-	@GetMapping("/delivery/foodPackage/{foodPackageId}/delivery")
-	public ResponseEntity<DeliveryStatusDto> getDeliveryByFoodPackageId(@PathVariable String foodPackageId) {
-		DeliveryStatusDto deliveryStatusDto = null;
-		try {
-			deliveryStatusDto = deliveryService.getDeliveryByFoodPackageId( foodPackageId );
-		} catch (Exception e) {
-			log.error(this.getClass(), e.getMessage(), e);
-			return new ResponseEntity(new ErrorDto(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		return new ResponseEntity<DeliveryStatusDto>(deliveryStatusDto, HttpStatus.OK);
-	}
+  @GetMapping("/delivery/foodPackage/{foodPackageId}/delivery")
+  public ResponseEntity<DeliveryStatusDto> getDeliveryByFoodPackageId(
+      @PathVariable String foodPackageId) {
+    DeliveryStatusDto deliveryStatusDto = null;
+    try {
+      deliveryStatusDto = deliveryService.getDeliveryByFoodPackageId(foodPackageId);
+    } catch (Exception e) {
+      log.error(this.getClass(), e.getMessage(), e);
+      return new ResponseEntity(new ErrorDto(e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+    return new ResponseEntity<DeliveryStatusDto>(deliveryStatusDto, HttpStatus.OK);
+  }
 }

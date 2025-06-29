@@ -18,7 +18,8 @@ public class FoodPackageUtil {
     return foodPackageEntity;
   }
 
-  public static FoodPackageDto foodPackageEntityToFoodPackageDto(FoodPackageEntity foodPackageEntity) {
+  public static FoodPackageDto foodPackageEntityToFoodPackageDto(
+      FoodPackageEntity foodPackageEntity) {
     FoodPackageDto foodPackageDto = new FoodPackageDto();
     foodPackageDto.setId(foodPackageEntity.getId());
     foodPackageDto.setCreatedDate(foodPackageEntity.getCreatedDate());

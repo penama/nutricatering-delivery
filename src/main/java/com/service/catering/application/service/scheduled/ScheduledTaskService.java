@@ -51,6 +51,6 @@ public class ScheduledTaskService extends BaseService {
         producerServiceRepository.updateProducer(producerEntity);
       }
     }
-	  log.info(this.getClass(), "################################## ScheduledTask fin ");
+    log.info(this.getClass(), "################################## ScheduledTask fin ");
   }
 }
