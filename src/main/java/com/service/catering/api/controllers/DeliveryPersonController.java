@@ -44,7 +44,7 @@ public class DeliveryPersonController extends BaseController {
     return new ResponseEntity<List<DeliveryPersonDto>>(deliveryPersonDtos, HttpStatus.OK);
   }
 
-  @GetMapping("/person/deliveryId/{deliveryId}")
+  @GetMapping("/person/id/{id}")
   public ResponseEntity<DeliveryPersonDto> getDeliveryPerson(@PathVariable String id) {
     DeliveryPersonDto deliveryPersonDto = null;
     try {

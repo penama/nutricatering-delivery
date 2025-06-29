@@ -6,7 +6,7 @@ import com.service.catering.domain.model.FoodPackageEntity;
 
 public class FoodPackageUtil {
 
-  public static FoodPackageEntity paymentDtoToPaymentEntity(FoodPackageDto foodPackageDto) {
+  public static FoodPackageEntity foodPackageDtoToFoodPackageEntity(FoodPackageDto foodPackageDto) {
     FoodPackageEntity foodPackageEntity = new FoodPackageEntity();
     foodPackageEntity.setId(foodPackageDto.getId());
     foodPackageEntity.setCreatedDate(foodPackageDto.getCreatedDate());
@@ -18,7 +18,7 @@ public class FoodPackageUtil {
     return foodPackageEntity;
   }
 
-  public static FoodPackageDto paymentEntityToPaymentDto(FoodPackageEntity foodPackageEntity) {
+  public static FoodPackageDto foodPackageEntityToFoodPackageDto(FoodPackageEntity foodPackageEntity) {
     FoodPackageDto foodPackageDto = new FoodPackageDto();
     foodPackageDto.setId(foodPackageEntity.getId());
     foodPackageDto.setCreatedDate(foodPackageEntity.getCreatedDate());

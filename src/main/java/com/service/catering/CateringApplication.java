@@ -11,7 +11,6 @@ import io.sentry.Sentry;
 public class CateringApplication {
 
   public static void main(String[] args) {
-    Sentry.captureMessage("Prueba");
     SpringApplication.run(CateringApplication.class, args);
   }
 }

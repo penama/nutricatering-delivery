@@ -9,6 +9,6 @@ import com.service.catering.domain.model.DeliveryPersonEntity;
 @Repository
 public interface DeliveryPersonRepository extends JpaRepository<DeliveryPersonEntity, String> {
 
-  @Query("SELECT u FROM DeliveryPerson u WHERE u.deliveryId = ?1")
+  @Query("SELECT u FROM DeliveryPerson u WHERE u.id = ?1")
   public DeliveryPersonEntity findByDeliveryPersonId(String deliverPersonId);
 }

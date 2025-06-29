@@ -3,6 +3,10 @@ package com.service.catering.application.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.service.catering.application.model.delivery.DeliveryStatusDto;
+import com.service.catering.application.model.delivery.HistoryDelivery;
+import com.service.catering.application.service.events.ProducerEventDeliveryUpdateStatusFoodPackageService;
+import com.service.catering.application.utils.HistoryDeliveryUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,10 +26,11 @@ public class DeliveryService extends BaseCommandHandler {
   //  @Autowired private IQueryDeliveryRepository iQueryDeliveryRepository;
   @Autowired private DeliveryServiceRepository deliveryServiceRepository;
   @Autowired private HistoryDeliveryServiceRepository historyDeliveryServiceRepository;
+  @Autowired private ProducerEventDeliveryUpdateStatusFoodPackageService producerEventDeliveryUpdateStatusFoodPackageService;
 
   public DeliveryDto newDelivery(DeliveryDto deliveryDto) throws Exception {
     DeliveryEntity deliveryEntity = DeliveryUtil.deliveryDtoToDeliveryEntity(deliveryDto);
-    deliveryEntity.setStatus(DeliveryPersonStatus.ACTIVE.name());
+//    deliveryEntity.setStatus(DeliveryPersonStatus.ACTIVE.name());
     commandHandler(this, deliveryEntity);
 
     HistoryDeliveryEntity historyDeliveryEntity = new HistoryDeliveryEntity();
@@ -36,6 +41,7 @@ public class DeliveryService extends BaseCommandHandler {
     historyDeliveryEntity.setLongitude("0");
     historyDeliveryServiceRepository.newHistoryDelivery(historyDeliveryEntity);
 
+	producerEventDeliveryUpdateStatusFoodPackageService.producerDeliveryUpdate( deliveryEntity, historyDeliveryEntity );
     return DeliveryUtil.deliveryEntityToDeliveryDto(deliveryEntity);
   }
 
@@ -59,6 +65,8 @@ public class DeliveryService extends BaseCommandHandler {
     historyDeliveryEntity.setLongitude(deliveryUpdateStatusDto.getLongitude());
 
     historyDeliveryServiceRepository.newHistoryDelivery(historyDeliveryEntity);
+
+	  producerEventDeliveryUpdateStatusFoodPackageService.producerDeliveryUpdate( deliveryEntity, historyDeliveryEntity );
   }
 
   public List<DeliveryDto> getDeliverys() throws Exception {
@@ -79,6 +87,22 @@ public class DeliveryService extends BaseCommandHandler {
     }
     return deliveryDtos;
   }
+
+	public DeliveryStatusDto getDeliveryByFoodPackageId(String foodPackageId) throws Exception {
+		DeliveryEntity deliveryEntity =
+			deliveryServiceRepository.queryDeliverysByFoodPackageId(foodPackageId);
+		DeliveryStatusDto deliveryStatusDto = new DeliveryStatusDto();
+		deliveryStatusDto.setId( deliveryEntity.getId() );
+		deliveryStatusDto.setStatus( deliveryEntity.getStatus() );
+		deliveryStatusDto.setComentario( deliveryEntity.getComentary() );
+		List<HistoryDeliveryEntity> historyDeliveryEntities = historyDeliveryServiceRepository.getHistoryDeliveryByDeliveryId( deliveryEntity.getId() );
+		List<HistoryDelivery> historyDeliveries = new ArrayList<>();
+		for (HistoryDeliveryEntity historyDeliveryEntity : historyDeliveryEntities) {
+			historyDeliveries.add(HistoryDeliveryUtil.historyDeliveryEntityToHistoryDeliveryDto( historyDeliveryEntity ));
+		}
+		deliveryStatusDto.setHitoryDeliveries( historyDeliveries );
+		return deliveryStatusDto;
+	}
 
   public DeliveryDto getDelivery(String deliveryId) throws Exception {
     DeliveryEntity deliveryEntity = deliveryServiceRepository.queryDeliveryId(deliveryId);

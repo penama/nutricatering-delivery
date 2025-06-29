@@ -10,16 +10,14 @@ import com.service.catering.application.model.deliveryperson.DeliveryPersonDto;
 import com.service.catering.application.utils.DeliveryPersonUtil;
 import com.service.catering.domain.model.DeliveryPersonEntity;
 import com.service.catering.infraestructure.event.querys.IQueryDeliveryPersonRepository;
-import com.service.catering.infraestructure.event.update.IUpdateDeliveryPersonRepository;
 
 @Service
 public class DeliveryPersonService extends BaseCommandHandler {
 
   @Autowired private IQueryDeliveryPersonRepository iQueryDeliveryPersonRepository;
 
-  @Autowired private IUpdateDeliveryPersonRepository iUpdateDeliveryPersonRepository;
-
   public DeliveryPersonDto newDeliveryPerson(DeliveryPersonDto deliveryPersonDto) throws Exception {
+	  deliveryPersonDto.setStatus( "ACTIVE" );
     DeliveryPersonEntity deliveryPersonEntity =
         DeliveryPersonUtil.DeliberyPersonDtoToDeliveryPersonEntity(deliveryPersonDto);
     commandHandler(this, deliveryPersonEntity);

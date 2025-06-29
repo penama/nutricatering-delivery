@@ -36,7 +36,7 @@ public class ScheduledTaskService extends BaseService {
 
   @Scheduled(cron = "#{@cronProperties.getExpression()}")
   public void executeTask() {
-    log.info(this.getClass(), "################################## ScheduledTask init ");
+    log.info(this.getClass(), "################################## ScheduledTask ini ");
     List<ProducerEntity> producerEntityList = producerServiceRepository.queryProducers();
     log.info(this.getClass(), producerEntityList.size() + " producers encontrados");
     for (ProducerEntity producerEntity : producerEntityList) {
@@ -51,5 +51,6 @@ public class ScheduledTaskService extends BaseService {
         producerServiceRepository.updateProducer(producerEntity);
       }
     }
+	  log.info(this.getClass(), "################################## ScheduledTask fin ");
   }
 }

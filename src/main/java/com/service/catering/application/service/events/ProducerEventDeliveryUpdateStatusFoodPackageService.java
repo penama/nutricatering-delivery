@@ -22,7 +22,6 @@ public class ProducerEventDeliveryUpdateStatusFoodPackageService extends BaseSer
   EventDto eventDto = null;
 
   @Autowired ProducerServiceRepository producerServiceRepository;
-  @Autowired NutritionalPlanRepository nutritionalPlanRepository;
 
   @Autowired private CustomerServiceRepository customerServiceRepository;
   @Autowired private CustomerAddressServiceRepository customerAddressServiceRepository;

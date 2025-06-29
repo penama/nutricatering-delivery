@@ -18,10 +18,10 @@ public class FoodPackageServiceRepository
 
   @Autowired public FoodPackageRepository repository;
 
-  public void newFoodPackage(FoodPackageEntity billerDataEntity) throws Exception {
-    billerDataEntity.id = UUID.randomUUID().toString();
-    billerDataEntity.createdDate = DateFormat.toDate();
-    repository.save(billerDataEntity);
+  public void newFoodPackage(FoodPackageEntity foodPackageEntity) throws Exception {
+//    foodPackageEntity.id = UUID.randomUUID().toString();
+    foodPackageEntity.createdDate = DateFormat.toDate();
+    repository.save(foodPackageEntity);
   }
 
   @Override

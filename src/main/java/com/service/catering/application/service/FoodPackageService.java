@@ -18,23 +18,23 @@ public class FoodPackageService extends BaseCommandHandler {
   @Autowired private IQueryFoodPackageRepository iQueryFoodPackageRepository;
 
   public FoodPackageDto newFoodPackage(FoodPackageDto foodPackageDto) throws Exception {
-    FoodPackageEntity foodPackageEntity = FoodPackageUtil.paymentDtoToPaymentEntity(foodPackageDto);
+    FoodPackageEntity foodPackageEntity = FoodPackageUtil.foodPackageDtoToFoodPackageEntity(foodPackageDto);
     commandHandler(this, foodPackageEntity);
-    return FoodPackageUtil.paymentEntityToPaymentDto(foodPackageEntity);
+    return FoodPackageUtil.foodPackageEntityToFoodPackageDto(foodPackageEntity);
   }
 
   public List<FoodPackageDto> getFoodPackages() throws Exception {
     List<FoodPackageEntity> foodPackageEntityList = iQueryFoodPackageRepository.queryFoodPackages();
     List<FoodPackageDto> foodPackageDtos = new ArrayList<>();
     for (FoodPackageEntity foodPackageEntity : foodPackageEntityList) {
-      foodPackageDtos.add(FoodPackageUtil.paymentEntityToPaymentDto(foodPackageEntity));
+      foodPackageDtos.add(FoodPackageUtil.foodPackageEntityToFoodPackageDto(foodPackageEntity));
     }
     return foodPackageDtos;
   }
 
   public FoodPackageDto getFoodPackageById(String id) throws Exception {
     FoodPackageEntity foodPackageEntity = iQueryFoodPackageRepository.queryFoodPackageById(id);
-    return FoodPackageUtil.paymentEntityToPaymentDto(foodPackageEntity);
+    return FoodPackageUtil.foodPackageEntityToFoodPackageDto(foodPackageEntity);
   }
 
   public void updateFoodPackage(FoodPackageEntity foodPackageEntity) throws Exception {

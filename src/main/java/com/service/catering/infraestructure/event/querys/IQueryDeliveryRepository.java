@@ -10,5 +10,7 @@ public interface IQueryDeliveryRepository {
 
   public List<DeliveryEntity> queryDeliverysByPersonId(String personId);
 
+  public DeliveryEntity queryDeliverysByFoodPackageId(String foodPackageId);
+
   public DeliveryEntity queryDeliveryId(String deliveryId);
 }

@@ -40,12 +40,16 @@ public class SubscriberBus {
   }
 
   private void processMessage(ServiceBusReceivedMessageContext context) {
-    ServiceBusReceivedMessage message = context.getMessage();
-    String messageBody = message.getBody().toString();
-    subscribersEventService.procesarMensaje(messageBody);
-    System.out.println("Mensaje recibido: " + messageBody);
-    // Marca el mensaje como completado (lo elimina de la cola)
-    // context.complete();
+//    ServiceBusReceivedMessage message = context.getMessage();
+//    String messageBody = message.getBody().toString();
+//	  try {
+//		  subscribersEventService.procesarMensaje(messageBody);
+//	  } catch (Exception e) {
+//		  throw new RuntimeException(e);
+//	  }
+//	  System.out.println("Mensaje recibido: " + messageBody);
+//    // Marca el mensaje como completado (lo elimina de la cola)
+//    // context.complete();
   }
 
   private void handleError(ServiceBusErrorContext context) {

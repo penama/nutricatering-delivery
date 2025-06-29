@@ -41,7 +41,7 @@ public class FoodPacakageController extends BaseController {
     return new ResponseEntity<List<FoodPackageDto>>(foodPackageDtos, HttpStatus.OK);
   }
 
-  @GetMapping("/foodPackage/deliveryId/{deliveryId}")
+  @GetMapping("/foodPackage/id/{id}")
   public ResponseEntity<FoodPackageDto> getFoodPackageById(@PathVariable String id) {
     FoodPackageDto foodPackageDto = null;
     try {
